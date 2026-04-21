@@ -34,15 +34,28 @@ public class Experiment {
             sorter.basicSort(sortedArr);
 
             System.out.println("Size: " + size);
+
+            if (size <= 10) {
+                System.out.print("Original array:  ");
+                sorter.printArray(randomArr);
+            }
+
             long basicRandom = measureSortTime(randomArr, "basic");
             long advRandom = measureSortTime(randomArr, "advanced");
-            System.out.println("Basic (Bubble) random: " + basicRandom + " ns");
+            System.out.println("Basic (Bubble) random:   " + basicRandom + " ns");
             System.out.println("Advanced (Merge) random: " + advRandom + " ns");
 
             long basicSorted = measureSortTime(sortedArr, "basic");
             long advSorted = measureSortTime(sortedArr, "advanced");
-            System.out.println("Basic (Bubble) sorted: " + basicSorted + " ns");
+            System.out.println("Basic (Bubble) sorted:   " + basicSorted + " ns");
             System.out.println("Advanced (Merge) sorted: " + advSorted + " ns");
+
+            if (size <= 10) {
+                int[] demonstrationArr = randomArr.clone();
+                sorter.advancedSort(demonstrationArr);
+                System.out.print("Sorted array:    ");
+                sorter.printArray(demonstrationArr);
+            }
 
             int target = randomArr[size / 2];
             long searchRandom = measureSearchTime(randomArr, target);
